@@ -1,11 +1,11 @@
 # FundRegister
 This project get a list of funds from fundcompare API and store it in a postgresql database. 
-\br
+<br>
 Then it get details of each fund from getfund API endpoint and
 update the 3 required parameters for each fund. 
-\br
+<br>
 I have used celery for background processing and Django ORM for database connection.
-\br
+<br>
 We have three APIs
 a. An API which gets registration number of a funds, fetch the fund info from database
 and return it as a JSON object.
