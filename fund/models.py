@@ -11,4 +11,9 @@ class FundData(models.Model):
     insInvNo = models.IntegerField(null=True)
     retInvNo = models.IntegerField(null=True)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['name', 'regNo',]),
+        ]
+
     
