@@ -7,6 +7,7 @@ update the 3 required parameters for each fund.
 I have used celery for background processing and Django ORM for database connection.
 <br>
 We have three APIs
+<br>
 a. An API which gets registration number of a funds, fetch the fund info from database
 and return it as a JSON object.
 you can call this by this url:
