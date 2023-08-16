@@ -1,6 +1,11 @@
 from django.urls import path
+# from rest_framework_swagger import get_swagger_view
+
 
 from . import views
+
+# schema_view = get_swagger_view(title=)
+
 
 urlpatterns = [
     path('', views.test, name='index'),

@@ -3,6 +3,7 @@ from celery import shared_task
 from .models import *
 from time import sleep
 import requests
+from .serializers import FundDataSerializer
 
 
 @shared_task()
@@ -40,9 +41,11 @@ def save_extra_info(regNo):
 @shared_task
 def get_fund_info_by_regno(reg_no):
     data = FundData.objects.filter(regNo=reg_no).values()
-    return data
+    serializer = FundDataSerializer(data, many=True)
+    return serializer.data
 
 @shared_task
 def get_fund_info_by_name(sub_name):
     data = FundData.objects.filter(name__icontains=sub_name).values('regNo', 'name')
-    return data
+    serializer = FundDataSerializer(data, many=True)
+    return serializer.data

@@ -3,13 +3,16 @@ from django.shortcuts import render
 from .tasks import *
 from .models import *
 import requests
+from django.http import JsonResponse
+from .models import FundData
+from rest_framework.decorators import api_view
 
 
 def test(request):
     test_func(6)
     return HttpResponse('Done') 
 
-
+@api_view(['POST'])
 def save_fund_info(request):
     response = requests.get('https://fund.fipiran.ir/api/v1/fund/fundcompare')
     data = response.json()  
@@ -23,10 +26,10 @@ def save_fund_info(request):
         save_data_info(result)
     return HttpResponse('All data saved')
         
+@api_view(['GET'])
+def show_fund_info_by_regno(request, reg_no):    
+    return JsonResponse({'data':get_fund_info_by_regno(reg_no)}, safe=False)
 
-def show_fund_info_by_regno(request, reg_no):
-    return HttpResponse(get_fund_info_by_regno(reg_no))
-
-
+@api_view(['GET'])
 def show_fund_info_by_name(request, name):
-    return HttpResponse(get_fund_info_by_name(name))
+    return JsonResponse({'data':get_fund_info_by_name(name)}, safe=False)
